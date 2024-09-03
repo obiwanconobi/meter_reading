@@ -1,4 +1,5 @@
-﻿using ensek_test.Services;
+﻿using ensek_test.Models;
+using ensek_test.Services;
 using NUnit.Framework;
 using System.Text;
 
@@ -27,10 +28,34 @@ namespace ensek_test.UnitTests
             {
                 Console.WriteLine();
              }
-            
-            
-          
-            
+ 
+        }
+
+        [TestCase]
+        public async Task ValidMeterReadTestReturnsTrueForValidMeterRead()
+        {
+            MeterReading meterRead = new MeterReading();
+            meterRead.Id = Guid.NewGuid();
+            meterRead.AccountId = 1244;
+            meterRead.MeterReadValue = "345";
+            meterRead.MeterReadingDateTime = DateTime.Now;
+
+           var result = await service.IsValidMeterReading(meterRead);
+            Assert.That(result, Is.True);
+
+        }
+        [TestCase]
+        public async Task ValidMeterReadTestReturnsFalseForInvalidMeterRead()
+        {
+            MeterReading meterRead = new MeterReading();
+            meterRead.Id = Guid.NewGuid();
+            meterRead.AccountId = 124444;
+            meterRead.MeterReadValue = "345g";
+            meterRead.MeterReadingDateTime = DateTime.Now;
+
+            var result = await service.IsValidMeterReading(meterRead);
+            Assert.That(result, Is.False);
+
         }
     }
 }

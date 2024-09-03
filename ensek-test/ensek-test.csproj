@@ -10,10 +10,14 @@
 
   <ItemGroup>
     <None Remove="DB\ensek-test.db" />
+    <None Remove="UnitTests\TestData\Meter_Reading.csv" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="DB\ensek-test.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UnitTests\TestData\Meter_Reading.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>

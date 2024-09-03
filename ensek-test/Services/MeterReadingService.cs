@@ -67,7 +67,7 @@ namespace ensek_test.Services
             
         }
 
-        private async Task<bool> IsValidMeterReading(MeterReading meterReading)
+        public async Task<bool> IsValidMeterReading(MeterReading meterReading)
         {
             
             var accountExists = await context.accounts.AnyAsync(x => x.AccountId == meterReading.AccountId);
@@ -88,7 +88,7 @@ namespace ensek_test.Services
             return !duplicateExists;
         }
 
-        private bool TryParseMeterReading(dynamic record, out MeterReading meterReading)
+        public bool TryParseMeterReading(dynamic record, out MeterReading meterReading)
         {
             meterReading = null;
 
